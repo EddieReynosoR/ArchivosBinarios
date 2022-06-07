@@ -83,8 +83,10 @@ namespace ArchivosBinarios
 
         public void MostrarArchivo(string Archivo)
         {
+            
             try
             {
+                
                 //Verifica si existe el archivo
                 if (File.Exists(Archivo))
                 {
@@ -122,9 +124,9 @@ namespace ArchivosBinarios
 
                         Console.WriteLine("Dias trabajados: " + DiasTrabajados);
 
-                        Console.WriteLine("Salario diario del empleado: {0,C}", SalarioDiario);
+                        Console.WriteLine("Salario diario del empleado: {0:C}", SalarioDiario);
 
-                        Console.WriteLine("SUELDO TOTAL del empleado: {0,C}", (DiasTrabajados * SalarioDiario));
+                        Console.WriteLine("SUELDO TOTAL del empleado: {0:C}", (DiasTrabajados*SalarioDiario));
 
                         Console.WriteLine("\n");
 

@@ -18,28 +18,57 @@ namespace ArchivosBinarios
             string Archi = null;
             char opc;
 
-            Console.WriteLine("BIENVENIDO AL MENU DE LA GESTION DE EMPLEADOS");
-
-            Console.WriteLine("Indica que es lo que quieres hacer...");
-
-            Console.WriteLine("1) Capturar empleados.");
-            Console.WriteLine("2) Mostrar empleados. ");
-            Console.WriteLine("3) Salir del programa. ");
-            opc = Console.ReadKey().KeyChar;
-
+            
             do
             {
+                Console.Clear();
+                Console.WriteLine("BIENVENIDO AL MENU DE LA GESTION DE EMPLEADOS");
+
+                Console.WriteLine("Indica que es lo que quieres hacer...");
+
+                Console.WriteLine("1) Capturar empleados.");
+                Console.WriteLine("2) Mostrar empleados. ");
+                Console.WriteLine("3) Salir del programa. ");
+                opc = Console.ReadKey().KeyChar;
+
                 switch (opc)
                 {
                     case '1':
-                        Console.WriteLine("Indica como quieres llamar a tu archivo: ");
-                        Archi = Console.ReadLine();
-                        escritura.CrearArchivo(Archi+".txt");
+                        //Escritura
+                        try
+                        {
+                            Console.WriteLine("Indica como quieres llamar a tu archivo: ");
+                            Archi = Console.ReadLine();
+
+                            char resp = 's';
+                            if (File.Exists(Archi + ".txt"))
+                            {
+                                Console.Write("El archivo existe, quieres sobreescribirlo? (s/n)");
+                                resp = Console.ReadKey().KeyChar;
+                            }
+                            if((resp=='s')||(resp == 'S'))
+                                escritura.CrearArchivo(Archi + ".txt");
+
+                        }catch(Exception e)
+                        {
+                            Console.WriteLine("\nError: " + e.Message);
+                            Console.WriteLine("\nRuta: " + e.StackTrace);
+                        }
                         break;
+
+
                     case '2':
-                        Console.WriteLine("Indica como se llama el achivo que quieres leer: ");
-                        Archi = Console.ReadLine();
-                        escritura.MostrarArchivo(Archi+".txt");
+                        //Lectura
+                        try
+                        {
+                            Console.WriteLine("Indica como se llama el achivo que quieres leer: ");
+                            Archi = Console.ReadLine();
+                            escritura.MostrarArchivo(Archi + ".txt");
+                        }catch(Exception e)
+                        {
+                            Console.WriteLine("\nError: " + e.Message);
+                            Console.WriteLine("\nRuta: " + e.StackTrace);
+                        }
                         break;
                     case '3':
                         Console.Clear();
